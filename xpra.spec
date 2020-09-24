@@ -4,7 +4,7 @@
 #
 Name     : xpra
 Version  : 2.5
-Release  : 6
+Release  : 7
 URL      : https://xpra.org/src/xpra-2.5.tar.xz
 Source0  : https://xpra.org/src/xpra-2.5.tar.xz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.

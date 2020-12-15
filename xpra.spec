@@ -4,7 +4,7 @@
 #
 Name     : xpra
 Version  : 4.0.4
-Release  : 10
+Release  : 11
 URL      : https://files.pythonhosted.org/packages/13/e7/384922d08d22cc73f63e061107e4ff1bad1c2183f1c00b22fb942fd4a303/xpra-4.0.4.tar.gz
 Source0  : https://files.pythonhosted.org/packages/13/e7/384922d08d22cc73f63e061107e4ff1bad1c2183f1c00b22fb942fd4a303/xpra-4.0.4.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.

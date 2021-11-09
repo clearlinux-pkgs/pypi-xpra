@@ -4,7 +4,7 @@
 #
 Name     : xpra
 Version  : 4.2.3
-Release  : 20
+Release  : 21
 URL      : https://files.pythonhosted.org/packages/7f/12/0657446d77fdea4041a748a8df6e05ee41c43a8c6f1ca20082c38f6dc84d/xpra-4.2.3.tar.gz
 Source0  : https://files.pythonhosted.org/packages/7f/12/0657446d77fdea4041a748a8df6e05ee41c43a8c6f1ca20082c38f6dc84d/xpra-4.2.3.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
@@ -136,7 +136,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1636482459
+export SOURCE_DATE_EPOCH=1636487376
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -160,6 +160,11 @@ cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
 ## Remove excluded files
 rm -f %{buildroot}*/usr/lib/sysusers.d/xpra.conf
+## install_append content
+mkdir -p %{buildroot}/usr/lib
+mv %{buildroot}/lib/* %{buildroot}/usr/lib/
+rmdir  %{buildroot}/lib
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -306,5 +311,5 @@ rm -f %{buildroot}*/usr/lib/sysusers.d/xpra.conf
 
 %files services
 %defattr(-,root,root,-)
-/lib/systemd/system/xpra.service
-/lib/systemd/system/xpra.socket
+/usr/lib/systemd/system/xpra.service
+/usr/lib/systemd/system/xpra.socket

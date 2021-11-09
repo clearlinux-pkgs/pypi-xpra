@@ -3,3 +3,5 @@
 Cython
 pygobject
 pycairo-dev
+pandoc
+buildreq-gnome

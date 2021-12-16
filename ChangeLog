@@ -1,164 +1,48 @@
-xpra (4.2.3-1) UNRELEASED; urgency=low
-  * network layer:
-    - ensure the http headers cache is never modified unintentionally
-    - invalid packet encoder names should not cause fatal errors
-    - preserve audio packets chunking (avoids an HTML5 client bug)
-    - prefer https links
-    - prefer sha256 to sha1 for file transfer checksums
-    - mmap setup error handling
-    - `sndbuf_bytes` value was incorrect (currently unused)
-    - socket timeout too long - broke VNC connections
-    - AES DoS with unreasonably large number of password stretching iterations
-    - tone down http content security policy for the HTML5 client
-    - parsing of remote ssh command output
-    - reply with a 404 if we have no http data to send
-    - stricter validation of challenge digest attribute
-    - stricter validation of packet indexes
-    - specifying invalid compressors should not be fatal
-    - handle more VNC clients correctly
-    - server errors when VNC clients are connected
-    - proxy sessions not found due to socket-dirs
-    - mmap group lookup
-  * encodings:
-    - don't enable video encoders not present in 'encodings' option
-    - ffmpeg H264 errors with unreleased version
-    - ffmpeg codecs silencing too many warnings
-    - vpx encoder lossless mode detection
-    - potential race conditions in the proxy server's encoder loop
-    - visual corruption with scaled jpeg updates
-    - incorrect error messages with the jpeg YUV decoder
-    - error in 'void' paint events (currently unused)
-    - CUDA 11.4 and Ampere cards
-    - RPM build errors when CUDA is disabled
-    - restrict the number of NVENC errors tagged as transient
-    - more robust OpenGL picture decoding sanity checks
-  * packaging and platforms:
-    - find the fakeXinerama library more reliably on all platforms
-    - platform detection for CentOS / RedHat
-    - missing default configuration files on MS Windows
-    - missing webp with latest Pillow builds on MacOS
-    - build fix for non-amd64 Debian (missing nvfbc)
-  * clipboard selections getting stuck with MS Windows and MacOS clients
-  * clipboard errors with some packet encoders sending strings
-  * authentication modules not honouring `socket-dirs` option
-  * make it easier to dismiss the splash screen
-  * ssh password and key dialogs timing out without being shown
-  * menu loading race condition causing empty start menu
-  * window size hints may not have been honoured (rare case)
-  * honour the force-replace-wm flag when upgrading
-  * correctly handle command timeouts when probing servers
-  * test scripts and command line tools fixups: unit tests, U2F tool, audio test, etc
-  * system tray save-to-file debugging failures
-  * minor cosmetic fixes to logging messages, unreachable code, icon loading errors
-  * make it easier to run in a prefixed installation
+xpra (4.3-1) UNRELEASED; urgency=low
+  * Platforms, build and packaging:
+    - arm64 support #3291, including nvenc and nvjpeg: #3378
+    - non-system header builds (eg: conda): #3360
+    - fixed MacOS shadow start via ssh: #3343
+    - parallel builds: #3255
+    - don't ship too may pillow plugins: #3133
+    - easier access to documentation: #3015
+    - Python 3.10 buffer api compatibility: #3031
+* Misc:
+    - make it easier to silence OpenGL validation warnings: #3380
+    - don't wait for printers: #3170
+    - make it easier to autostart: #3134
+    - 'clean' subcommand: #3099
+    - flexible 'run_scaled' subcommand: #3303
+    - more flexible key shortcuts configuration: #3183
+* Encodings and latency:
+    - significant latency and performance improvements: #3337
+    - spng decoder #3373 and encoder: #3374
+    - jpeg with transparency: #3367
+    - faster argb module: #3361
+    - faster nvjpeg module using CUDA, add transparency: #2984
+    - faster xshape scaling: #1226
+    - downscale jpeg and webp: #3333
+    - disable av-sync for applications without audio: #3351
+    - opaque region support: #3317
+    - show FPS on client window: #3311
+    - nvenc to use the same device context as nvjpeg: #3195
+    - nvenc disable unsupported presets: #3136
+* Network:
+    - make it easier to use SSL: #3299
+    - support more AES modes: GCM, CFB and CTR, #3247
+    - forked rencodeplus encoder: #3229
+* Server:
+    - shadow specific areas or monitors: #3320
+    - faster icon lookup: #3326
+    - don't trust _NET_WM_PID: #3251
+    - move all sessions to a sub-directory: #3217
+    - more reliable server cleanup: #3218
+    - better VNC support: #3256
+    - more seamless server upgrades: #541
+    - source /etc/profile: #3083
+    - switch input method to ibus: #2359
 
- -- Antoine Martin <antoine@nagafix.co.uk>  Fri, 01 Oct 2021 21:36:11 +0700
-
-xpra (4.2.2-1) UNRELEASED; urgency=low
-  * don't build ffmpeg codecs on i386 (crashy)
-  * prevent crashes caused by svg conversion done in a thread
-  * always stop the 'new-stream' notification process
-  * prevent subprocesses from becoming zombies
-  * clean server on 'stop' or 'exit'
-  * fix application geometry issues
-  * show correct default values with "xpra --help"
-  * source and source-start errors on CentOS 8
-  * stop responding to 'info' requests when shutting down
-  * network layer:
-    - honour the packet-encoding and compressors options
-    - rencode packet encoder is not thread safe!
-    - packet errors with bencoder and None values
-    - don't assume the packet encoders handle bytes and / or strings
-  * client issues:
-    - backwards compatibility with v3 servers for ssh start
-    - incorrect client exit code
-    - icon theme errors should not be fatal (triggered on MacOS)
-  * subcommands:
-    - 'start-gui' invalid options shown
-    - 'sessions' and 'displays' subcommands do not need a display
-    - fix hidden 'wmname' utility subcommand
-    - many subcommands should send debug logging to stderr
-  * platform issues:
-    - MacOS dock flickering with 'start-gui'
-    - MacOS splash screen hiding password prompts
-  * menu loading:
-    - try harder to find valid menu entries to use
-    - skip entries that cannot be executed
-    - don't block the main thread when loading menus
-  * xpra top:
-    - handle unicode window titles correctly
-    - fix screen corruption due to threading
-    - fix latency always showing as zero
-  * packaging fixes:
-    - Debian packages now correctly use /etc/default for systemd service configuration
-    - MacOS updates for latest GTK3 builds
-    - add missing C++ files for MS Windows builds
-    - DEB missing dependency on gst-launch needed for silence detection
-  * audio:
-    - pipeline errors with aac encoder
-    - X11 warning when starting microphone forwarding from the command line
-  * minor / cosmetic fixes:
-    - cropped icons shown in html5 client connect page
-    - logging, error handling
-    - remove unused pulseaudio directories
-    - '1080p' resize-display string matching
-
- -- Antoine Martin <antoine@nagafix.co.uk>  Mon, 09 Aug 2021 23:38:46 +0700
-
-xpra (4.2.1-1) UNRELEASED; urgency=low
-  * build and packaging fixes:
-    - missing dependencies
-    - nvjpeg DEB packaging
-    - OpenBSD build fix
-    - compilation errors on Ubuntu Bionic
-    - DEB packages were missing some files (fixes audio silence detection)
-    - correct DEB dependency on 'dns' module for SSHFP support
-    - remove unused outdated code
-    - remove runtime dependency on distutils for 'which'
-    - cryptic error when a pkg_config file is missing
-  * proxy server:
-    - deadlocks when queues fill up too quickly
-    - honour mode and display
-    - disconnections under heavy load
-  * MS Windows:
-    - spurious OpenGL warnings during sanity checks
-    - printer enumeration crash and stalls
-    - small cursors showing random pixel values
-    - updated MS Windows GStreamer module list
-  * MacOS:
-    - MacOS GStreamer packaging of dylib modules, man page
-    - MacOS update to GTK 3.24.30
-    - MacOS Big Sur error with 'Xpra_Browser' subcommand
-  * Network:
-    - fix RFB server protocol, sockets not timing out with VNC clients
-    - invalid error when bind option points to a directory
-    - detect wifi network connections more reliably
-    - fix 'xpra' packet type auto detection
-    - default to ssl-mode if the 'wss' socket option is not specified
-    - 'keydata' connection attribute should override other options
-    - correct exit code for encryption errors
-  * Encodings:
-    - disable vaapi in ffmpeg codec by default (crashy / buggy)
-    - NVENC errors when retrying after a transient failure
-    - scroll detection bugs
-    - webp encoder invalid memory access (corruption)
-  * notification forwarding errors with SVG icons
-  * disable SVG icon resizing (potential crashes on some platforms)
-  * missing log prefix for 'xpra recover' subcommand
-  * faster server startup failures: don't wait for things that were not started (ie: audio)
-  * fix commands started twice when upgrading (ie: ibus-daemon)
-  * local start with explicit attach was broken on Posix
-  * 'attach' option should not be forwarded to the server (which then fails)
-  * invalid window resize counter (used for resize loop prevention)
-  * missing icon errors when html5 client disconnects from system-wide proxy server
-  * file transfer errors when a 'top' client is connected
-  * don't claim that non-interactive clients use the screen
-  * retry once after X11 query tree errors during startup
-  * provide XDG_RUNTIME_DIR if it is not defined
-  * add new 3x4K Xdummy modeline
-  * minor cosmetic and debug logging fixes
-
- -- Antoine Martin <antoine@nagafix.co.uk>  Sun, 11 Jul 2021 11:01:22 +0700
+ -- Antoine Martin <antoine@nagafix.co.uk>  Wed, 08 Dec 2021 21:56:48 +0700
 
 xpra (4.2-1) UNRELEASED; urgency=low
   * use pinentry for password prompts and ssh prompts

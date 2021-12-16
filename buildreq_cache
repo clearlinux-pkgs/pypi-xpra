@@ -1,7 +1,7 @@
-4.2.3
+4.3
 pkgconfig(harfbuzz)
 pkgconfig(xext)
 pkgconfig(xfixes)
 pkgconfig(xi)
 pkgconfig(xrandr)
-python3-dev
+pkgconfig(xres)

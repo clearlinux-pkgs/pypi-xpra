@@ -1,7 +1,2 @@
-4.3
-pkgconfig(harfbuzz)
-pkgconfig(xext)
-pkgconfig(xfixes)
-pkgconfig(xi)
-pkgconfig(xrandr)
+4.3.1
 pkgconfig(xres)

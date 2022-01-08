@@ -1,3 +1,0 @@
-mkdir -p %{buildroot}/usr/lib
-mv %{buildroot}/lib/* %{buildroot}/usr/lib/
-rmdir  %{buildroot}/lib

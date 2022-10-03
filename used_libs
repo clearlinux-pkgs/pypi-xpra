@@ -3,7 +3,9 @@ libXRes.so.1
 libXtst.so.6
 libc.so.6
 libcairo.so.2
+libdrm.so.2
 libgdk-3.so.0
 libgobject-2.0.so.0
+liblz4.so.1
 libturbojpeg.so.0
 libxkbfile.so.1

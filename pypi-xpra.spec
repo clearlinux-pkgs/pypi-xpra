@@ -4,7 +4,7 @@
 #
 Name     : pypi-xpra
 Version  : 4.4.1
-Release  : 31
+Release  : 32
 URL      : https://files.pythonhosted.org/packages/7c/47/e1d1238e7490534314e6ad66a5d4dbe3e3c051bb9081a1d71f181ee42c51/xpra-4.4.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/7c/47/e1d1238e7490534314e6ad66a5d4dbe3e3c051bb9081a1d71f181ee42c51/xpra-4.4.1.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.

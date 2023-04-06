@@ -6,3 +6,6 @@ Linux-PAM
 Linux-PAM-dev
 libwebp-dev
 libvpx-dev
+libdrm-dev
+not-ffmpeg-dev
+brotli-dev

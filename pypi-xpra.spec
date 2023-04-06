@@ -5,7 +5,7 @@
 #
 Name     : pypi-xpra
 Version  : 4.4.4
-Release  : 37
+Release  : 38
 URL      : https://files.pythonhosted.org/packages/23/03/28a891324e666a78418532c5f8c086f8c7b8fb7244209074e8fce8504061/xpra-4.4.4.tar.gz
 Source0  : https://files.pythonhosted.org/packages/23/03/28a891324e666a78418532c5f8c086f8c7b8fb7244209074e8fce8504061/xpra-4.4.4.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
@@ -23,9 +23,12 @@ Requires: pypi-xpra-python = %{version}-%{release}
 Requires: pypi-xpra-python3 = %{version}-%{release}
 BuildRequires : Linux-PAM
 BuildRequires : Linux-PAM-dev
+BuildRequires : brotli-dev
 BuildRequires : buildreq-distutils3
+BuildRequires : libdrm-dev
 BuildRequires : libvpx-dev
 BuildRequires : libwebp-dev
+BuildRequires : not-ffmpeg-dev
 BuildRequires : pandoc
 BuildRequires : pkgconfig(gdk-3.0)
 BuildRequires : pkgconfig(liblz4)
@@ -166,7 +169,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680789436
+export SOURCE_DATE_EPOCH=1680789761
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib

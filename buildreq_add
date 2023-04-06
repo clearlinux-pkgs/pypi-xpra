@@ -2,3 +2,7 @@
 # picked up automatically. One name per line, no whitespace.
 pandoc
 pypi(cython)
+Linux-PAM
+Linux-PAM-dev
+libwebp-dev
+libvpx-dev

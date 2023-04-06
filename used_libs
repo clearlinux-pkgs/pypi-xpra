@@ -6,5 +6,9 @@ libcairo.so.2
 libgdk-3.so.0
 libgobject-2.0.so.0
 liblz4.so.1
+libpam.so.0
+libpam_misc.so.0
 libturbojpeg.so.0
+libvpx.so.8
+libwebp.so.7
 libxkbfile.so.1

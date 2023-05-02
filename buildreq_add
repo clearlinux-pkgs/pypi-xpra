@@ -9,3 +9,4 @@ libvpx-dev
 libdrm-dev
 not-ffmpeg-dev
 brotli-dev
+systemd-dev

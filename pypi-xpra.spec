@@ -5,7 +5,7 @@
 #
 Name     : pypi-xpra
 Version  : 4.4.4
-Release  : 39
+Release  : 40
 URL      : https://files.pythonhosted.org/packages/23/03/28a891324e666a78418532c5f8c086f8c7b8fb7244209074e8fce8504061/xpra-4.4.4.tar.gz
 Source0  : https://files.pythonhosted.org/packages/23/03/28a891324e666a78418532c5f8c086f8c7b8fb7244209074e8fce8504061/xpra-4.4.4.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
@@ -19,7 +19,6 @@ Requires: pypi-xpra-license = %{version}-%{release}
 Requires: pypi-xpra-man = %{version}-%{release}
 Requires: pypi-xpra-python = %{version}-%{release}
 Requires: pypi-xpra-python3 = %{version}-%{release}
-Requires: pypi-xpra-services = %{version}-%{release}
 BuildRequires : Linux-PAM
 BuildRequires : Linux-PAM-dev
 BuildRequires : brotli-dev
@@ -38,6 +37,7 @@ BuildRequires : pkgconfig(xkbfile)
 BuildRequires : pkgconfig(xres)
 BuildRequires : pkgconfig(xtst)
 BuildRequires : pypi(cython)
+BuildRequires : systemd-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -56,7 +56,6 @@ Requires: pypi-xpra-data = %{version}-%{release}
 Requires: pypi-xpra-libexec = %{version}-%{release}
 Requires: pypi-xpra-config = %{version}-%{release}
 Requires: pypi-xpra-license = %{version}-%{release}
-Requires: pypi-xpra-services = %{version}-%{release}
 
 %description bin
 bin components for the pypi-xpra package.
@@ -131,15 +130,6 @@ Requires: python3-core
 python3 components for the pypi-xpra package.
 
 
-%package services
-Summary: services components for the pypi-xpra package.
-Group: Systemd services
-Requires: systemd
-
-%description services
-services components for the pypi-xpra package.
-
-
 %prep
 %setup -q -n xpra-4.4.4
 cd %{_builddir}/xpra-4.4.4
@@ -155,7 +145,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683049393
+export SOURCE_DATE_EPOCH=1683051625
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -199,6 +189,7 @@ python3 -tt setup.py build install --root=%{buildroot}-v3
 popd
 ## Remove excluded files
 rm -f %{buildroot}*/usr/lib/sysusers.d/xpra.conf
+rm -f %{buildroot}*/lib/systemd/system/xpra.*
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
@@ -426,7 +417,3 @@ rm -f %{buildroot}*/usr/lib/sysusers.d/xpra.conf
 %defattr(-,root,root,-)
 /V3/usr/lib/python3*/*
 /usr/lib/python3*/*
-
-%files services
-%defattr(-,root,root,-)
-/lib/systemd/system/xpra.service

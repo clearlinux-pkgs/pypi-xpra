@@ -5,7 +5,7 @@
 #
 Name     : pypi-xpra
 Version  : 4.4.4
-Release  : 38
+Release  : 39
 URL      : https://files.pythonhosted.org/packages/23/03/28a891324e666a78418532c5f8c086f8c7b8fb7244209074e8fce8504061/xpra-4.4.4.tar.gz
 Source0  : https://files.pythonhosted.org/packages/23/03/28a891324e666a78418532c5f8c086f8c7b8fb7244209074e8fce8504061/xpra-4.4.4.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
@@ -14,13 +14,12 @@ License  : Apache-2.0 GPL-2.0 GPL-2.0+ GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0 LGPL-3
 Requires: pypi-xpra-bin = %{version}-%{release}
 Requires: pypi-xpra-config = %{version}-%{release}
 Requires: pypi-xpra-data = %{version}-%{release}
-Requires: pypi-xpra-filemap = %{version}-%{release}
-Requires: pypi-xpra-lib = %{version}-%{release}
 Requires: pypi-xpra-libexec = %{version}-%{release}
 Requires: pypi-xpra-license = %{version}-%{release}
 Requires: pypi-xpra-man = %{version}-%{release}
 Requires: pypi-xpra-python = %{version}-%{release}
 Requires: pypi-xpra-python3 = %{version}-%{release}
+Requires: pypi-xpra-services = %{version}-%{release}
 BuildRequires : Linux-PAM
 BuildRequires : Linux-PAM-dev
 BuildRequires : brotli-dev
@@ -57,7 +56,7 @@ Requires: pypi-xpra-data = %{version}-%{release}
 Requires: pypi-xpra-libexec = %{version}-%{release}
 Requires: pypi-xpra-config = %{version}-%{release}
 Requires: pypi-xpra-license = %{version}-%{release}
-Requires: pypi-xpra-filemap = %{version}-%{release}
+Requires: pypi-xpra-services = %{version}-%{release}
 
 %description bin
 bin components for the pypi-xpra package.
@@ -88,32 +87,11 @@ Requires: pypi-xpra-man = %{version}-%{release}
 doc components for the pypi-xpra package.
 
 
-%package filemap
-Summary: filemap components for the pypi-xpra package.
-Group: Default
-
-%description filemap
-filemap components for the pypi-xpra package.
-
-
-%package lib
-Summary: lib components for the pypi-xpra package.
-Group: Libraries
-Requires: pypi-xpra-data = %{version}-%{release}
-Requires: pypi-xpra-libexec = %{version}-%{release}
-Requires: pypi-xpra-license = %{version}-%{release}
-Requires: pypi-xpra-filemap = %{version}-%{release}
-
-%description lib
-lib components for the pypi-xpra package.
-
-
 %package libexec
 Summary: libexec components for the pypi-xpra package.
 Group: Default
 Requires: pypi-xpra-config = %{version}-%{release}
 Requires: pypi-xpra-license = %{version}-%{release}
-Requires: pypi-xpra-filemap = %{version}-%{release}
 
 %description libexec
 libexec components for the pypi-xpra package.
@@ -147,11 +125,19 @@ python components for the pypi-xpra package.
 %package python3
 Summary: python3 components for the pypi-xpra package.
 Group: Default
-Requires: pypi-xpra-filemap = %{version}-%{release}
 Requires: python3-core
 
 %description python3
 python3 components for the pypi-xpra package.
+
+
+%package services
+Summary: services components for the pypi-xpra package.
+Group: Systemd services
+Requires: systemd
+
+%description services
+services components for the pypi-xpra package.
 
 
 %prep
@@ -169,15 +155,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680789761
+export SOURCE_DATE_EPOCH=1683049393
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build  %{?_smp_mflags}
 
@@ -413,14 +399,6 @@ rm -f %{buildroot}*/usr/lib/sysusers.d/xpra.conf
 /usr/share/doc/xpra/images/win32-shadow-tray-menu.png
 /usr/share/doc/xpra/index.html
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-pypi-xpra
-
-%files lib
-%defattr(-,root,root,-)
-/usr/share/clear/optimized-elf/other*
-
 %files libexec
 %defattr(-,root,root,-)
 /usr/libexec/xpra/auth_dialog
@@ -446,4 +424,9 @@ rm -f %{buildroot}*/usr/lib/sysusers.d/xpra.conf
 
 %files python3
 %defattr(-,root,root,-)
+/V3/usr/lib/python3*/*
 /usr/lib/python3*/*
+
+%files services
+%defattr(-,root,root,-)
+/lib/systemd/system/xpra.service

@@ -4,10 +4,10 @@
 # Using build pattern: distutils3
 #
 Name     : pypi-xpra
-Version  : 4.4.4
-Release  : 40
-URL      : https://files.pythonhosted.org/packages/23/03/28a891324e666a78418532c5f8c086f8c7b8fb7244209074e8fce8504061/xpra-4.4.4.tar.gz
-Source0  : https://files.pythonhosted.org/packages/23/03/28a891324e666a78418532c5f8c086f8c7b8fb7244209074e8fce8504061/xpra-4.4.4.tar.gz
+Version  : 4.4.5
+Release  : 41
+URL      : https://files.pythonhosted.org/packages/6f/99/2c3452163525f1a4811b6bce2c2399555c60ad92460034891fb8c7157be3/xpra-4.4.5.tar.gz
+Source0  : https://files.pythonhosted.org/packages/6f/99/2c3452163525f1a4811b6bce2c2399555c60ad92460034891fb8c7157be3/xpra-4.4.5.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0 GPL-2.0+ GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0 LGPL-3.0+ MIT MPL-1.1 Python-2.0
@@ -131,10 +131,10 @@ python3 components for the pypi-xpra package.
 
 
 %prep
-%setup -q -n xpra-4.4.4
-cd %{_builddir}/xpra-4.4.4
+%setup -q -n xpra-4.4.5
+cd %{_builddir}/xpra-4.4.5
 pushd ..
-cp -a xpra-4.4.4 buildavx2
+cp -a xpra-4.4.5 buildavx2
 popd
 
 %build
@@ -145,7 +145,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683051625
+export SOURCE_DATE_EPOCH=1684871013
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib

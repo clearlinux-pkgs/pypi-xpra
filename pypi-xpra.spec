@@ -4,13 +4,13 @@
 # Using build pattern: distutils3
 #
 Name     : pypi-xpra
-Version  : 4.4.6
-Release  : 43
-URL      : https://files.pythonhosted.org/packages/6e/58/e03b466d45ebae3f5bb98c5c4a523c5ad598f1c1c5c58d4469f1197c431b/xpra-4.4.6.tar.gz
-Source0  : https://files.pythonhosted.org/packages/6e/58/e03b466d45ebae3f5bb98c5c4a523c5ad598f1c1c5c58d4469f1197c431b/xpra-4.4.6.tar.gz
+Version  : 5.0
+Release  : 44
+URL      : https://files.pythonhosted.org/packages/dc/6d/c6292af9b19e9cd5c0dac3ed69fe3905a05578a7d5b078ac5d66478c6157/xpra-5.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/dc/6d/c6292af9b19e9cd5c0dac3ed69fe3905a05578a7d5b078ac5d66478c6157/xpra-5.0.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
 Group    : Development/Tools
-License  : Apache-2.0 GPL-2.0 GPL-2.0+ GPL-3.0 GPL-3.0+ LGPL-2.0 LGPL-3.0 LGPL-3.0+ MIT MPL-1.1 Python-2.0
+License  : GPL-2.0 GPL-2.0+ GPL-3.0 LGPL-2.0 LGPL-3.0 LGPL-3.0+ MIT MPL-1.1 Python-2.0
 Requires: pypi-xpra-bin = %{version}-%{release}
 Requires: pypi-xpra-config = %{version}-%{release}
 Requires: pypi-xpra-data = %{version}-%{release}
@@ -47,7 +47,7 @@ Xpra gives you "persistent remote applications" for X. That is, unlike normal X 
 
 So basically it's screen for remote X apps.
 
-This metapackage installs the python3 version of xpra in full, including the python client, server and HTML5 client.
+This metapackage installs the xpra in full, including the python client, server and HTML5 client.
 
 %package bin
 Summary: bin components for the pypi-xpra package.
@@ -131,10 +131,10 @@ python3 components for the pypi-xpra package.
 
 
 %prep
-%setup -q -n xpra-4.4.6
-cd %{_builddir}/xpra-4.4.6
+%setup -q -n xpra-5.0
+cd %{_builddir}/xpra-5.0
 pushd ..
-cp -a xpra-4.4.6 buildavx2
+cp -a xpra-5.0 buildavx2
 popd
 
 %build
@@ -145,7 +145,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1687303907
+export SOURCE_DATE_EPOCH=1692631531
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -319,6 +319,12 @@ rm -f %{buildroot}*/lib/systemd/system/xpra.*
 /usr/share/doc/xpra/Build/MacOS.html
 /usr/share/doc/xpra/Build/Other.html
 /usr/share/doc/xpra/Build/RPM.html
+/usr/share/doc/xpra/Build/graphs/all.png
+/usr/share/doc/xpra/Build/graphs/codecs.png
+/usr/share/doc/xpra/Build/graphs/gtk3.png
+/usr/share/doc/xpra/Build/graphs/packaging-tools.png
+/usr/share/doc/xpra/Build/graphs/python3.png
+/usr/share/doc/xpra/Build/graphs/tools.png
 /usr/share/doc/xpra/Build/index.html
 /usr/share/doc/xpra/CHANGELOG.html
 /usr/share/doc/xpra/FAQ.html
@@ -337,9 +343,11 @@ rm -f %{buildroot}*/lib/systemd/system/xpra.*
 /usr/share/doc/xpra/Network/AES.html
 /usr/share/doc/xpra/Network/Encryption.html
 /usr/share/doc/xpra/Network/Multicast-DNS.html
+/usr/share/doc/xpra/Network/QUIC.html
 /usr/share/doc/xpra/Network/SSH.html
 /usr/share/doc/xpra/Network/SSL.html
 /usr/share/doc/xpra/Network/index.html
+/usr/share/doc/xpra/SPONSORS.html
 /usr/share/doc/xpra/Usage/Apache-Proxy.html
 /usr/share/doc/xpra/Usage/Authentication.html
 /usr/share/doc/xpra/Usage/Client-OpenGL.html
@@ -373,6 +381,7 @@ rm -f %{buildroot}*/lib/systemd/system/xpra.*
 /usr/share/doc/xpra/images/icons/osx.png
 /usr/share/doc/xpra/images/icons/package.png
 /usr/share/doc/xpra/images/icons/printer.png
+/usr/share/doc/xpra/images/icons/quic.png
 /usr/share/doc/xpra/images/icons/rpm.png
 /usr/share/doc/xpra/images/icons/server-connected.png
 /usr/share/doc/xpra/images/icons/sound.png
@@ -381,9 +390,15 @@ rm -f %{buildroot}*/lib/systemd/system/xpra.*
 /usr/share/doc/xpra/images/icons/upload.png
 /usr/share/doc/xpra/images/icons/webcam.png
 /usr/share/doc/xpra/images/icons/windows.png
+/usr/share/doc/xpra/images/logos/atos-black.png
+/usr/share/doc/xpra/images/logos/vpo-small.png
 /usr/share/doc/xpra/images/mdns-gui.png
 /usr/share/doc/xpra/images/pavucontrol-client.png
 /usr/share/doc/xpra/images/pavucontrol-server.png
+/usr/share/doc/xpra/images/screenshots/gnome-shell-notification.png
+/usr/share/doc/xpra/images/screenshots/osx-notification.png
+/usr/share/doc/xpra/images/screenshots/win32-notification.png
+/usr/share/doc/xpra/images/screenshots/win32-shadow-tray-menu.png
 /usr/share/doc/xpra/images/session-info-graphs.png
 /usr/share/doc/xpra/images/session-info-sound.png
 /usr/share/doc/xpra/images/upload.png

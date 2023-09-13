@@ -4,10 +4,10 @@
 # Using build pattern: distutils3
 #
 Name     : pypi-xpra
-Version  : 5.0.1
-Release  : 47
-URL      : https://files.pythonhosted.org/packages/b6/8a/ef1932c8e9e97dee5a646b0193b374c576916e0b7badc5aedddc8eca2ef3/xpra-5.0.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/b6/8a/ef1932c8e9e97dee5a646b0193b374c576916e0b7badc5aedddc8eca2ef3/xpra-5.0.1.tar.gz
+Version  : 5.0.2
+Release  : 48
+URL      : https://files.pythonhosted.org/packages/9b/48/f7ecba650b54b87331848c84638b31b4ea97d4341d306e61b94c3c717b23/xpra-5.0.2.tar.gz
+Source0  : https://files.pythonhosted.org/packages/9b/48/f7ecba650b54b87331848c84638b31b4ea97d4341d306e61b94c3c717b23/xpra-5.0.2.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+ GPL-3.0 LGPL-2.0 LGPL-3.0 LGPL-3.0+ MIT MPL-1.1 Python-2.0
@@ -131,10 +131,10 @@ python3 components for the pypi-xpra package.
 
 
 %prep
-%setup -q -n xpra-5.0.1
-cd %{_builddir}/xpra-5.0.1
+%setup -q -n xpra-5.0.2
+cd %{_builddir}/xpra-5.0.2
 pushd ..
-cp -a xpra-5.0.1 buildavx2
+cp -a xpra-5.0.2 buildavx2
 popd
 
 %build
@@ -145,7 +145,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1693935246
+export SOURCE_DATE_EPOCH=1694623535
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib

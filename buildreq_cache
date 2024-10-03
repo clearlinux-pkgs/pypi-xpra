@@ -1,0 +1,4 @@
+6.0.1
+pkgconfig(liblz4)
+pkgconfig(libxxhash)
+pkgconfig(xres)

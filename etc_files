@@ -34,6 +34,8 @@
 65_proxy.conf
 70_commands.conf
 90-xpra-virtual.conf
+90_fallback.conf
+X11
 X11
 conf.d
 content-categories
@@ -41,7 +43,9 @@ content-parent
 content-type
 dbus-1
 default
+default
 http-headers
+pam.d
 pam.d
 system.d
 xorg-uinput.conf
@@ -50,5 +54,6 @@ xorg.conf.d
 xpra
 xpra
 xpra
+xpra' ']'
 xpra.conf
 xpra.conf

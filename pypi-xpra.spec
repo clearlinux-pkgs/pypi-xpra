@@ -6,10 +6,10 @@
 # autospec commit: f35655a
 #
 Name     : pypi-xpra
-Version  : 6.2.0
-Release  : 79
-URL      : https://files.pythonhosted.org/packages/c0/39/6f27ad2fec0f5806f4e807ed4cb9e0a9c2f52351e499635b974bcd18b7e3/xpra-6.2.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/c0/39/6f27ad2fec0f5806f4e807ed4cb9e0a9c2f52351e499635b974bcd18b7e3/xpra-6.2.0.tar.gz
+Version  : 6.2.1
+Release  : 80
+URL      : https://files.pythonhosted.org/packages/80/6f/3f96194c9a5d3c458680025f116d4de3dafaea4435997a547003b3b8e30c/xpra-6.2.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/80/6f/3f96194c9a5d3c458680025f116d4de3dafaea4435997a547003b3b8e30c/xpra-6.2.1.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause GPL-2.0 GPL-2.0+ GPL-3.0 LGPL-2.0 LGPL-2.1+ LGPL-2.1-only LGPL-3.0 LGPL-3.0+ MIT MPL-1.1 Python-2.0
@@ -133,10 +133,10 @@ python3 components for the pypi-xpra package.
 
 
 %prep
-%setup -q -n xpra-6.2.0
-cd %{_builddir}/xpra-6.2.0
+%setup -q -n xpra-6.2.1
+cd %{_builddir}/xpra-6.2.1
 pushd ..
-cp -a xpra-6.2.0 buildavx2
+cp -a xpra-6.2.1 buildavx2
 popd
 
 %build
@@ -147,7 +147,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1729029523
+export SOURCE_DATE_EPOCH=1730206823
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib

@@ -1,5 +1,5 @@
 PKG_NAME := pypi-xpra
-URL = https://files.pythonhosted.org/packages/c3/cb/31fb3e7afeaf8cbe8c90e450e76335fe39a97e7ee5e489c350c6fa589730/xpra-6.2.4.tar.gz
+URL = https://files.pythonhosted.org/packages/c4/8d/bf43464767c9ed4bf1df7aff19e1c38b3a867e7b048c5e3f08eb9781e630/xpra-6.2.5.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common

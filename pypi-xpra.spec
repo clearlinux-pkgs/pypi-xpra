@@ -6,10 +6,10 @@
 # autospec commit: fbbd4e3
 #
 Name     : pypi-xpra
-Version  : 6.2.4
-Release  : 89
-URL      : https://files.pythonhosted.org/packages/c3/cb/31fb3e7afeaf8cbe8c90e450e76335fe39a97e7ee5e489c350c6fa589730/xpra-6.2.4.tar.gz
-Source0  : https://files.pythonhosted.org/packages/c3/cb/31fb3e7afeaf8cbe8c90e450e76335fe39a97e7ee5e489c350c6fa589730/xpra-6.2.4.tar.gz
+Version  : 6.2.5
+Release  : 90
+URL      : https://files.pythonhosted.org/packages/c4/8d/bf43464767c9ed4bf1df7aff19e1c38b3a867e7b048c5e3f08eb9781e630/xpra-6.2.5.tar.gz
+Source0  : https://files.pythonhosted.org/packages/c4/8d/bf43464767c9ed4bf1df7aff19e1c38b3a867e7b048c5e3f08eb9781e630/xpra-6.2.5.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
 Group    : Development/Tools
 License  : Apache-2.0 BSD-2-Clause BSD-3-Clause GPL-2.0 GPL-2.0+ GPL-3.0 LGPL-2.0 LGPL-2.1+ LGPL-2.1-only LGPL-3.0 LGPL-3.0+ MIT MPL-1.1 Python-2.0
@@ -47,7 +47,12 @@ BuildRequires : systemd-dev
 %define debug_package %{nil}
 
 %description
-A Fake CUDA RPM do allow us to build python-pycuda against non-RPM versions of CUDA.
+Xpra gives you "persistent remote applications" for X. That is, unlike normal X applications, applications run with xpra are "persistent" -- you can run them remotely, and they don't die if your connection does. You can detach them, and reattach them later -- even from another computer -- with no loss of state. And unlike VNC or RDP, xpra is for remote applications, not remote desktops -- individual applications show up as individual windows on your screen, managed by your window manager. They're not trapped in a box.
+
+So basically it's screen for remote X apps.
+
+This metapackage installs the %{python3} build of xpra in full,
+including the python client, server and HTML5 client.
 
 %package bin
 Summary: bin components for the pypi-xpra package.
@@ -133,10 +138,10 @@ python3 components for the pypi-xpra package.
 
 
 %prep
-%setup -q -n xpra-6.2.4
-cd %{_builddir}/xpra-6.2.4
+%setup -q -n xpra-6.2.5
+cd %{_builddir}/xpra-6.2.5
 pushd ..
-cp -a xpra-6.2.4 buildavx2
+cp -a xpra-6.2.5 buildavx2
 popd
 
 %build
@@ -147,7 +152,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1741243459
+export SOURCE_DATE_EPOCH=1742466179
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib

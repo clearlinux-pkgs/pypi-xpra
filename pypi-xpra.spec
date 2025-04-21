@@ -7,7 +7,7 @@
 #
 Name     : pypi-xpra
 Version  : 6.2.5
-Release  : 91
+Release  : 92
 URL      : https://files.pythonhosted.org/packages/c4/8d/bf43464767c9ed4bf1df7aff19e1c38b3a867e7b048c5e3f08eb9781e630/xpra-6.2.5.tar.gz
 Source0  : https://files.pythonhosted.org/packages/c4/8d/bf43464767c9ed4bf1df7aff19e1c38b3a867e7b048c5e3f08eb9781e630/xpra-6.2.5.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.

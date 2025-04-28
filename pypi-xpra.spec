@@ -7,7 +7,7 @@
 #
 Name     : pypi-xpra
 Version  : 6.3
-Release  : 94
+Release  : 95
 URL      : https://files.pythonhosted.org/packages/59/52/0a7821ccc27c42ceae130d8b2704e8f2178c8277be89f766bf9c7b4cc2ea/xpra-6.3.tar.gz
 Source0  : https://files.pythonhosted.org/packages/59/52/0a7821ccc27c42ceae130d8b2704e8f2178c8277be89f766bf9c7b4cc2ea/xpra-6.3.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
@@ -21,7 +21,6 @@ Requires: pypi-xpra-license = %{version}-%{release}
 Requires: pypi-xpra-man = %{version}-%{release}
 Requires: pypi-xpra-python = %{version}-%{release}
 Requires: pypi-xpra-python3 = %{version}-%{release}
-Requires: pypi-xpra-services = %{version}-%{release}
 BuildRequires : Linux-PAM
 BuildRequires : Linux-PAM-dev
 BuildRequires : brotli-dev
@@ -62,7 +61,6 @@ Requires: pypi-xpra-data = %{version}-%{release}
 Requires: pypi-xpra-libexec = %{version}-%{release}
 Requires: pypi-xpra-config = %{version}-%{release}
 Requires: pypi-xpra-license = %{version}-%{release}
-Requires: pypi-xpra-services = %{version}-%{release}
 
 %description bin
 bin components for the pypi-xpra package.
@@ -132,20 +130,13 @@ python components for the pypi-xpra package.
 Summary: python3 components for the pypi-xpra package.
 Group: Default
 Requires: python3-core
+Provides: pypi(xpra)
 Requires: pygobject-python3
 Requires: pypi(pillow)
+Requires: pypi(pygobject)
 
 %description python3
 python3 components for the pypi-xpra package.
-
-
-%package services
-Summary: services components for the pypi-xpra package.
-Group: Systemd services
-Requires: systemd
-
-%description services
-services components for the pypi-xpra package.
 
 
 %prep
@@ -163,7 +154,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1745854579
+export SOURCE_DATE_EPOCH=1745856592
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -230,6 +221,7 @@ popd
 ## Remove excluded files
 rm -f %{buildroot}*/usr/lib/sysusers.d/xpra.conf
 rm -f %{buildroot}*/lib/systemd/system/xpra.*
+rm -f %{buildroot}*/lib/systemd/system/xpra-*.*
 ## install_append content
 mv %{buildroot}/lib/* %{buildroot}/usr/lib/
 ## install_append end
@@ -507,8 +499,3 @@ mv %{buildroot}/lib/* %{buildroot}/usr/lib/
 %defattr(-,root,root,-)
 /V3/usr/lib/python3*/*
 /usr/lib/python3*/*
-
-%files services
-%defattr(-,root,root,-)
-/usr/lib/systemd/system/xpra-encoder.service
-/usr/lib/systemd/system/xpra-encoder.socket

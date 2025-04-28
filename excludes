@@ -2,3 +2,4 @@
 # names, one per line.
 /usr/lib/sysusers.d/xpra.conf
 /lib/systemd/system/xpra.*
+/lib/systemd/system/xpra-*.*

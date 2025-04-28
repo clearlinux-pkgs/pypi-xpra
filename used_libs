@@ -13,7 +13,8 @@ libpam.so.0
 libpam_misc.so.0
 libsystemd.so.0
 libturbojpeg.so.0
-libvpx.so.9
+libvpx.so.11
+libwayland-client.so.0
 libwebp.so.7
 libxkbfile.so.1
 libxxhash.so.0

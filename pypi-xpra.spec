@@ -7,7 +7,7 @@
 #
 Name     : pypi-xpra
 Version  : 6.3
-Release  : 93
+Release  : 94
 URL      : https://files.pythonhosted.org/packages/59/52/0a7821ccc27c42ceae130d8b2704e8f2178c8277be89f766bf9c7b4cc2ea/xpra-6.3.tar.gz
 Source0  : https://files.pythonhosted.org/packages/59/52/0a7821ccc27c42ceae130d8b2704e8f2178c8277be89f766bf9c7b4cc2ea/xpra-6.3.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
@@ -163,7 +163,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1745851289
+export SOURCE_DATE_EPOCH=1745854579
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -230,6 +230,9 @@ popd
 ## Remove excluded files
 rm -f %{buildroot}*/usr/lib/sysusers.d/xpra.conf
 rm -f %{buildroot}*/lib/systemd/system/xpra.*
+## install_append content
+mv %{buildroot}/lib/* %{buildroot}/usr/lib/
+## install_append end
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
@@ -507,5 +510,5 @@ rm -f %{buildroot}*/lib/systemd/system/xpra.*
 
 %files services
 %defattr(-,root,root,-)
-/lib/systemd/system/xpra-encoder.service
-/lib/systemd/system/xpra-encoder.socket
+/usr/lib/systemd/system/xpra-encoder.service
+/usr/lib/systemd/system/xpra-encoder.socket

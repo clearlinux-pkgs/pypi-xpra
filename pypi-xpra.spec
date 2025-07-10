@@ -6,10 +6,10 @@
 # autospec commit: 65cf152
 #
 Name     : pypi-xpra
-Version  : 6.3.1
-Release  : 96
-URL      : https://files.pythonhosted.org/packages/4c/c1/cb4a023097ff4d0476204b9f77a084ddcc66178359ae0b94fc41feeeb696/xpra-6.3.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/4c/c1/cb4a023097ff4d0476204b9f77a084ddcc66178359ae0b94fc41feeeb696/xpra-6.3.1.tar.gz
+Version  : 6.3.2
+Release  : 97
+URL      : https://files.pythonhosted.org/packages/fd/03/8f83cfa679d548c1edea7e283b42f4ba1419229b9483793162171f182dbb/xpra-6.3.2.tar.gz
+Source0  : https://files.pythonhosted.org/packages/fd/03/8f83cfa679d548c1edea7e283b42f4ba1419229b9483793162171f182dbb/xpra-6.3.2.tar.gz
 Summary  : runs X clients, typically on a remote host, and directs their display to the local machine without losing any state.
 Group    : Development/Tools
 License  : Apache-2.0 BSD-2-Clause BSD-3-Clause GPL-2.0 GPL-2.0+ GPL-3.0 LGPL-2.0 LGPL-2.1+ LGPL-2.1-only LGPL-3.0 LGPL-3.0+ MIT MPL-1.1 Python-2.0
@@ -139,10 +139,10 @@ python3 components for the pypi-xpra package.
 
 
 %prep
-%setup -q -n xpra-6.3.1
-cd %{_builddir}/xpra-6.3.1
+%setup -q -n xpra-6.3.2
+cd %{_builddir}/xpra-6.3.2
 pushd ..
-cp -a xpra-6.3.1 buildavx2
+cp -a xpra-6.3.2 buildavx2
 popd
 
 %build
@@ -153,7 +153,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1748883251
+export SOURCE_DATE_EPOCH=1752157030
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -201,7 +201,6 @@ LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-xpra
-cp %{_builddir}/xpra-%{version}/.venv/lib/python3.13/site-packages/pip-23.2.1.dist-info/LICENSE.txt %{buildroot}/usr/share/package-licenses/pypi-xpra/d1816736d55c943e1ed44a003f72cb7d1afe0789 || :
 cp %{_builddir}/xpra-%{version}/COPYING %{buildroot}/usr/share/package-licenses/pypi-xpra/06877624ea5c77efe3b7e39b0f909eda6e25a4ec || :
 cp %{_builddir}/xpra-%{version}/packaging/debian/xpra/copyright %{buildroot}/usr/share/package-licenses/pypi-xpra/c722dc46afe54071fb7d5c3f48ef46f4b54cafee || :
 cp %{_builddir}/xpra-%{version}/xpra/gtk/notifier-LICENSE.txt %{buildroot}/usr/share/package-licenses/pypi-xpra/f45ee1c765646813b442ca58de72e20a64a7ddba || :
@@ -482,7 +481,6 @@ mv %{buildroot}/lib/* %{buildroot}/usr/lib/
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/pypi-xpra/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
 /usr/share/package-licenses/pypi-xpra/c722dc46afe54071fb7d5c3f48ef46f4b54cafee
-/usr/share/package-licenses/pypi-xpra/d1816736d55c943e1ed44a003f72cb7d1afe0789
 /usr/share/package-licenses/pypi-xpra/f45ee1c765646813b442ca58de72e20a64a7ddba
 
 %files man
